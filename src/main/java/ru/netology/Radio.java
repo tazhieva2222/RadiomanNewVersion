@@ -78,14 +78,6 @@ public class Radio {
         this.currentRadioStation = currentRadioStation;
     }
 
-    public boolean isOn() {
-        return on;
-    }
-
-    public void setOn(boolean on) {
-        this.on = on;
-    }
-
 
     public void pressNextStation() {
         if (currentRadioStation >= maxRadioStation) {
