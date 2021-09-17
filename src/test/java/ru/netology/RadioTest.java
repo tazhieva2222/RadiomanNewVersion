@@ -5,16 +5,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
-    Radio radio = new Radio();
-    
-    
-     @Test
+    Radio radio = new Radio ("noname", 100, 0, 45,10, 0,0, true);
+
+
+    @Test
     public void createRadio() {
-        String expected = "Uzer";
-        assertNull(radio.getName());
+        String expected = "noname";
+        radio.getName();
         radio.setName(expected);
         assertEquals(expected, radio.getName());
     }
+
 
     @Test
     public void validateChangeFields() {
@@ -26,7 +27,7 @@ class RadioTest {
  
     @Test
     public void atMaxRadioStationPressNextStation() {
-        radio.setMaxRadioStation(10);
+        radio.setMaxRadioStation(9);
         radio.pressNextStation();
         assertEquals(0,radio.getMinRadioStation());
     }
@@ -35,21 +36,21 @@ class RadioTest {
     public void atMinRadioStationPressPrevStation() {
         radio.setMinRadioStation(0);
         radio.pressPrevStation();
-        assertEquals(9, radio.getMaxRadioStation());
+        assertEquals(10, radio.getMaxRadioStation());
     }
 
     @Test
     public void changeOverLastRadioStation() {
         radio.setCurrentRadioStation(9);
         radio.pressNextStation();
-        assertEquals(0, radio.getCurrentRadioStation());
+        assertEquals(10, radio.getCurrentRadioStation());
     }
 
     @Test
     public void changeUnderInitialRadioStation() {
         radio.setCurrentRadioStation(0);
         radio.pressPrevStation();
-        assertEquals(9, radio.getCurrentRadioStation());
+        assertEquals(10, radio.getCurrentRadioStation());
 
     }
 
@@ -84,16 +85,16 @@ class RadioTest {
     // тестируем громкость
     @Test
     public void volumeOverMax() {
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(101);
         radio.getMaxVolume();
-        assertEquals(10, radio.getMaxVolume());
+        assertEquals(100, radio.getMaxVolume());
     }
 
     @Test
     public void atMaxVolumePlusVolume() {
-        radio.setMaxVolume(10);
+        radio.setMaxVolume(100);
         radio.pressPlusVolume();
-        assertEquals(10, radio.getMaxVolume());
+        assertEquals(100, radio.getMaxVolume());
     }
 
     @Test
